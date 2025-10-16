@@ -14,23 +14,11 @@
         `yandex`
       ],
       params: {
-        // change to the Partner Number you received from Novatiq
         sourceid: 'Tej',
-
-        // Use the sharedID module
-        useSharedId: true,
-
-        // optional: will default to _pubcid if left blank.
-        // If not left blank must match "name" in the the module above
-        sharedIdName: 'novatiq',
-        
-        urlParams: {
-          novatiqId: 'sptoken'
-        }
+        useSharedId: true
         }
       }
     ],
-    // 1000ms maximum auction delay, applies to all userId modules
     auctionDelay: 1000
   }
 });

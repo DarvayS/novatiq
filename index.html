@@ -1,96 +1,92 @@
-
 <html>
-
-<head>
-  <script type="text/javascript"
-    src="newscript.js"></script>
-  <script>
-    pbjs.setConfig({
-  userSync: {
-    userIds: [
-      {
-      name: 'novatiq',
-      bidders: [
-        `yandex`
-      ],
-      params: {
-        sourceid: 'Tej',
-        useSharedId: true
-        }
-      }
-    ],
-    auctionDelay: 1000
-  }
-});
-  </script>
-  <script>
-    var adUnits = [{
-      code: 'banner',
-      mediaTypes: {
-        banner: {
-          sizes: [[320, 300]],
-        }
-      },
-      bids: [{
-        bidder: 'yandex',
-        params: {
-          pageId: 2070024,
-          impId: 1
-        }
-
-  }]
-}];
-
-    var pbjs = pbjs || {};
-    pbjs.que = pbjs.que || [];
-  </script>
-  
-
-  <script>
-    pbjs.que.push(function () {
-      pbjs.addAdUnits(adUnits);
-    });
-
-    // you could instead pass an array of adUnits
-    // to getHighestCpmBids() if desired
-    function renderAllAdUnits() {
-      var winners = pbjs.getHighestCpmBids();
-      for (var i = 0; i < winners.length; i++) {
-        renderOne(winners[i]);
-      }
-    }
-
-    function renderOne(winningBid) {
-      if (winningBid && winningBid.adId) {
-        var div = document.getElementById(winningBid.adUnitCode);
-        if (div) {
-          let iframe = document.createElement('iframe');
-          iframe.frameBorder = '0';
-          div.appendChild(iframe);
-          var iframeDoc = iframe.contentWindow.document;
-          pbjs.renderAd(iframeDoc, winningBid.adId);
-        }
-      }
-
-    }
-
-  </script>
-
-  <script>
-    pbjs.que.push(function () {
-      pbjs.requestBids({
-        timeout: 2000,
-        bidsBackHandler: renderAllAdUnits
+  <head>
+    <script type="text/javascript" src="newscript.js"></script>
+    <script>
+      pbjs.setConfig({
+        userSync: {
+          userIds: [
+            {
+              name: "novatiq",
+              bidders: [`yandex`],
+              params: {
+                sourceid: "Tej",
+                useSharedId: true,
+                urlParams: {
+                  novatiqId: "sptoken",
+                },
+              },
+            },
+          ],
+          auctionDelay: 1000,
+        },
       });
-    });
-  </script>
-</head>
+    </script>
+    <script>
+      var adUnits = [
+        {
+          code: "banner",
+          mediaTypes: {
+            banner: {
+              sizes: [[320, 300]],
+            },
+          },
+          bids: [
+            {
+              bidder: "yandex",
+              params: {
+                pageId: 2070024,
+                impId: 1,
+              },
+            },
+          ],
+        },
+      ];
 
-<body>
-  <h2>Ad Serverless Test Page</h2>
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
+    </script>
 
-  <div id='banner'></div>
+    <script>
+      pbjs.que.push(function () {
+        pbjs.addAdUnits(adUnits);
+      });
 
-</body>
+      // you could instead pass an array of adUnits
+      // to getHighestCpmBids() if desired
+      function renderAllAdUnits() {
+        var winners = pbjs.getHighestCpmBids();
+        for (var i = 0; i < winners.length; i++) {
+          renderOne(winners[i]);
+        }
+      }
 
+      function renderOne(winningBid) {
+        if (winningBid && winningBid.adId) {
+          var div = document.getElementById(winningBid.adUnitCode);
+          if (div) {
+            let iframe = document.createElement("iframe");
+            iframe.frameBorder = "0";
+            div.appendChild(iframe);
+            var iframeDoc = iframe.contentWindow.document;
+            pbjs.renderAd(iframeDoc, winningBid.adId);
+          }
+        }
+      }
+    </script>
+
+    <script>
+      pbjs.que.push(function () {
+        pbjs.requestBids({
+          timeout: 2000,
+          bidsBackHandler: renderAllAdUnits,
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <h2>Ad Serverless Test Page</h2>
+
+    <div id="banner"></div>
+  </body>
 </html>

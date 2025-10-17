@@ -11,13 +11,22 @@
               params: {
                 sourceid: "Yyp",
                 useSharedId: true,
+                sharedIdName: "_sharedid",
                 urlParams: {
                   novatiqId: "sptoken",
                 },
               },
             },
-          ],
+            {
+             name: "sharedId",
+             storage: {
+                 type: "cookie",
+                 name: "_sharedid",
+                 expires: 90
+             }
+         }],
           auctionDelay: 1000,
+          syncDelay: 5000
         },
       });
     </script>
